@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+
+<html lang="ro">
+
+<head>
+
+  <meta charset="utf-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+  <title>La mulți ani, mama! 🎁🌹</title>
+
+  <meta name="theme-color" content="#b1004b" />
+
+  <style>
+
+    :root{
+
+      --bg: #fff4f8;
+
+      --text: #2a2a2a;
+
+      --accent: #b1004b;
+
+      --accent-2:#ff3b7a;
+
+      --ribbon:#ffcf33;
+
+      --box:#ff6a95;
+
+      --box-dark:#e55381;
+
+      --leaf:#1e9e63;
+
+      --stem:#266f4c;
+
+      --paper:#fffaf0;
+
+      --shadow: 0 10px 25px rgba(0,0,0,.12);
+
+    }
+
+    *{box-sizing:border-box}
+
+    html,body{height:100%}
+
+    body{
+
+      margin:0;
+
+      background: radial-gradient(1200px 600px at 50% -10%, #ffe0ea 0%, var(--bg) 40%, #fff 100%);
+
+      color:var(--text);
+
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+
+      display:grid;
+
+      place-items:center;
+
+      overflow-x:hidden;
+
+    }
+
+    .wrap{
+
+      width:min(92vw, 480px);
+
+      text-align:center;
+
+      padding:16px 14px 40px;
+
+    }
+
+    h1{
+
+      font-weight:800;
+
+      letter-spacing:.3px;
+
+      margin:6px 0 14px;
+
+      font-size: clamp(20px, 5vw, 28px);
+
+      color:var(--accent);
+
+      text-shadow:0 2px 0 rgba(255,255,255,.9);
+
+    }
+
+    .hint{
+
+      font-size: clamp(14px, 3.8vw, 16px);
+
+      opacity:.75;
+
+      margin-bottom:16px;
+
+    }
+
+
+
+    /* === STAGE: cadrul în jurul cadoului, cu petale care cad === */
+
+    .stage{
+
+      position:relative;
+
+      width: min(80vw, 360px);
+
+      height: min(80vw, 360px);
+
+      margin: 0 auto 10px;
+
+      display:grid;
+
+      place-items:center;
+
+      perspective: 900px;
+
+      -webkit-tap-highlight-color: transparent;
+
+      border-radius: 22px;
+
+      overflow:hidden;         /* ținem petalele în interior */
+
+      box-shadow: 0 12px 30px rgba(0,0,0,.10);
+
+      background: radial-gradient(120% 90% at 50% 0%, #fff0f6 0%, #ffe7ef 40%, #ffd7e5 100%);
+
+    }
+
+
+
+    /* Petalele (elemente create dinamic) */
+
+    .petal{
+
+      position:absolute;
+
+      top:-10%;
+
+      width: 14px; height: 18px;
+
+      background: radial-gradient(circle at 40% 30%, #ffd1e0 0%, #ff9dbb 60%, #ff6a95 100%);
+
+      border-radius: 60% 40% 60% 40% / 60% 60% 40% 40%;
+
+      opacity:.85;
+
+      filter: drop-shadow(0 3px 4px rgba(0,0,0,.12));
+
+      animation: fall linear infinite;
+
+    }
+
+    @keyframes fall{
+
+      0%   { transform: translate3d(var(--x), -15%, 0) rotate(0deg); }
+
+      100% { transform: translate3d(calc(var(--x) + var(--drift)), 115%, 0) rotate(360deg); }
+
+    }
+
+
+
+    /* Cadoul */
+
+    .gift{
+
+      position:relative;
+
+      width: 72%;
+
+      height: 45%;
+
+      transform-style: preserve-3d;
+
+      cursor:pointer;
+
+      user-select:none;
+
+    }
+
+    .gift:focus-visible{outline:3px dashed var(--accent); outline-offset:6px}
+
+
+
+    .box{
+
+      position:absolute; inset:auto 0 0 0;
+
+      height:70%;
+
+      margin:auto;
+
+      background: linear-gradient(180deg, var(--box) 0%, var(--box-dark) 100%);
+
+      border-radius: 10px;
+
+      box-shadow: var(--shadow);
+
+    }
+
+    .box::before, .box::after{
+
+      content:""; position:absolute; inset:0;
+
+      border-radius:10px;
+
+    }
+
+    .box::before{ /* panglică verticală */
+
+      width: 18%;
+
+      left: 41%;
+
+      right:auto;
+
+      background: linear-gradient(180deg, var(--ribbon), #e9b400);
+
+      box-shadow: inset 0 0 0 2px rgba(0,0,0,.05);
+
+    }
+
+    .box::after{ /* panglică orizontală */
+
+      height: 16%;
+
+      top: 42%;
+
+      background: linear-gradient(180deg, var(--ribbon), #e9b400);
+
+      box-shadow: inset 0 0 0 2px rgba(0,0,0,.05);
+
+    }
+
+
+
+    .lid{
+
+      position:absolute; inset:0 0 auto 0;
+
+      height:34%;
+
+      margin:auto;
+
+      transform-origin: 50% 100%;
+
+      background: linear-gradient(180deg, #ffc2d3 0%, #ff9bb6 100%);
+
+      border-radius: 12px 12px 8px 8px;
+
+      box-shadow: var(--shadow);
+
+      transition: transform .8s cubic-bezier(.2,.9,.2,1.2);
+
+    }
+
+    .lid::before{ /* panglică pe capac */
+
+      content:"";
+
+      position:absolute; inset:0 41% 0 41%;
+
+      background: linear-gradient(180deg, var(--ribbon), #e9b400);
+
+      border-radius:8px;
+
+    }
+
+    .bow{
+
+      position:absolute; left:50%; top:-18%;
+
+      transform: translateX(-50%);
+
+      width: 80px; height: 42px;
+
+    }
+
+    .bow::before, .bow::after{
+
+      content:""; position:absolute; top:0;
+
+      width:42px; height:42px; border-radius:50% 50% 10% 50% / 60% 60% 10% 60%;
+
+      background: radial-gradient(circle at 30% 30%, #ffe88d, var(--ribbon) 60%);
+
+      box-shadow: 0 3px 8px rgba(0,0,0,.15);
+
+    }
+
+    .bow::before{ left:-2px; transform: rotate(-22deg) }
+
+    .bow::after{ right:-2px; transform: scaleX(-1) rotate(-22deg) }
+
+
+
+    /* Buchetul de trandafiri (SVG) */
+
+    .bouquet{
+
+      position:absolute; inset:0;
+
+      display:grid; place-items:center;
+
+      transform: translateY(40px) scale(.95);
+
+      opacity:0;
+
+      pointer-events:none;
+
+      transition: transform .9s cubic-bezier(.18,.9,.2,1.2), opacity .6s ease;
+
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,.18));
+
+    }
+
+    .bouquet svg{ width: 68%; max-width: 520px; }
+
+    .bouquet.sway{ animation: sway 3.5s ease-in-out infinite .3s }
+
+    @keyframes sway{
+
+      0%,100%{ transform: rotate(0deg) }
+
+      50%{ transform: rotate(2.4deg) }
+
+    }
+
+
+
+    /* Scrisoarea (plic) */
+
+    .letter{
+
+      position:absolute; left:50%; bottom: 10%;
+
+      transform: translateX(-50%) translateY(30px) scale(.9);
+
+      width: 54%;
+
+      opacity:0;
+
+      transition: transform .9s cubic-bezier(.18,.9,.2,1.2), opacity .6s ease .1s;
+
+      cursor:pointer;
+
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,.18));
+
+    }
+
+
+
+    /* Stări când cadoul e deschis */
+
+    .opened .lid{
+
+      transform: rotateX(160deg) translateY(-6px);
+
+      box-shadow: 0 18px 30px rgba(0,0,0,.12);
+
+    }
+
+    .opened .bouquet{
+
+      transform: translateY(-46px) scale(1);
+
+      opacity:1;
+
+      pointer-events:auto;
+
+    }
+
+    .opened .letter{
+
+      transform: translateX(-50%) translateY(-8px) scale(1);
+
+      opacity:1;
+
+      pointer-events:auto;
+
+    }
+
+
+
+    /* Confetti */
+
+    .confetti{
+
+      position:absolute; inset:0; overflow:visible; pointer-events:none;
+
+    }
+
+    .confetti i{
+
+      position:absolute; width:10px; height:16px; opacity:.9;
+
+      top:-20px; border-radius:2px;
+
+      animation: fall linear forwards;
+
+    }
+
+    @keyframes fall{
+
+      to { transform: translateY(120vh) rotate(360deg) }
+
+    }
+
+
+
+    /* Modal mesaj */
+
+    .modal{
+
+      position:fixed; inset:0; display:none; place-items:center;
+
+      background: rgba(0,0,0,.35);
+
+      padding: 18px;
+
+      z-index: 50;
+
+      -webkit-backdrop-filter: blur(2px);
+
+      backdrop-filter: blur(2px);
+
+    }
+
+    .modal[open]{ display:grid }
+
+    .card{
+
+      width:min(92vw, 520px);
+
+      background: var(--paper);
+
+      color:#4a3b37;
+
+      border-radius: 14px;
+
+      box-shadow: var(--shadow);
+
+      padding: 18px 18px 10px;
+
+      border: 2px solid #f3e6d6;
+
+      position:relative;
+
+      overflow:hidden;
+
+    }
+
+    .card::before{
+
+      content:"🌹"; position:absolute; right:10px; top:8px; font-size:28px; opacity:.5
+
+    }
+
+    .card h2{
+
+      margin:0 0 10px;
+
+      color: var(--accent);
+
+      font-size: clamp(18px, 5vw, 22px);
+
+    }
+
+    .card p{ line-height:1.5; margin: 8px 0; font-size: clamp(15px, 4.2vw, 17px); }
+
+    .close{
+
+      margin: 12px 0 8px;
+
+      padding:10px 16px;
+
+      border-radius: 10px;
+
+      border: none;
+
+      background: linear-gradient(180deg, var(--accent-2), var(--accent));
+
+      color:white; font-weight:700; letter-spacing:.3px;
+
+      box-shadow: var(--shadow);
+
+      cursor:pointer;
+
+    }
+
+    .small{
+
+      font-size:12px; opacity:.6; margin-top:6px;
+
+    }
+
+
+
+    /* ——— Fotografia mamei (afișată în mesaj) ——— */
+
+    .photo-wrap{
+
+      display:grid; place-items:center;
+
+      margin: 6px 0 12px;
+
+    }
+
+    .photo{
+
+      width: min(86%, 360px);
+
+      aspect-ratio: 1 / 1;
+
+      border-radius: 14px;
+
+      object-fit: cover;
+
+      box-shadow: 0 8px 20px rgba(0,0,0,.12);
+
+      border: 3px solid #f3e6d6;
+
+      background: #f7efe6;
+
+      image-orientation: from-image; /* corecție orientare când e suportat */
+
+    }
+
+
+
+    /* Reduce motion */
+
+    @media (prefers-reduced-motion: reduce){
+
+      .lid, .bouquet, .letter{ transition: none !important }
+
+      .confetti i{ animation-duration: .01s }
+
+      .bouquet.sway{ animation: none }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="wrap">
+
+    <h1>🎁 Surpriză pentru mama</h1>
+
+    <p class="hint">Atinge cadoul pentru a-l deschide</p>
+
+
+
+    <div class="stage" id="stage">
+
+      <!-- strat pentru petale (umplut dinamic) -->
+
+      <div class="petals-layer" aria-hidden="true"></div>
+
+
+
+      <!-- Confetti container -->
+
+      <div class="confetti" aria-hidden="true"></div>
+
+
+
+      <!-- Cadou -->
+
+      <div class="gift" id="gift" role="button" tabindex="0" aria-label="Deschide cadoul">
+
+        <div class="lid"><i class="bow" aria-hidden="true"></i></div>
+
+        <div class="box"></div>
+
+
+
+        <!-- Buchet (SVG pur, fără resurse externe) -->
+
+        <div class="bouquet" id="bouquet" aria-hidden="true">
+
+          <svg viewBox="0 0 300 300" aria-label="Buchet de trandafiri">
+
+            <!-- tulpini -->
+
+            <g fill="none" stroke="var(--stem)" stroke-width="5" stroke-linecap="round">
+
+              <path d="M150 220 C 120 180, 130 150, 110 110" />
+
+              <path d="M150 220 C 170 180, 180 150, 200 110" />
+
+              <path d="M150 220 C 150 190, 150 160, 150 120" />
+
+            </g>
+
+            <!-- frunze -->
+
+            <g fill="var(--leaf)">
+
+              <ellipse cx="125" cy="165" rx="10" ry="18" transform="rotate(-20 125 165)"/>
+
+              <ellipse cx="175" cy="165" rx="10" ry="18" transform="rotate(20 175 165)"/>
+
+              <ellipse cx="150" cy="185" rx="10" ry="18"/>
+
+            </g>
+
+            <!-- trandafiri -->
+
+            <g>
+
+              <!-- stânga -->
+
+              <g transform="translate(100 90)">
+
+                <circle r="26" fill="url(#roseGrad)"/>
+
+                <path d="M-10 0 C -2 -14, 10 -12, 18 -4 C 8 6, -2 10, -12 8 Z" fill="#b1004b" opacity=".35"/>
+
+              </g>
+
+              <!-- mijloc -->
+
+              <g transform="translate(150 80)">
+
+                <circle r="28" fill="url(#roseGrad)"/>
+
+                <path d="M-12 0 C 0 -16, 12 -12, 20 -2 C 8 8, -2 12, -14 10 Z" fill="#b1004b" opacity=".35"/>
+
+              </g>
+
+              <!-- dreapta -->
+
+              <g transform="translate(200 95)">
+
+                <circle r="24" fill="url(#roseGrad)"/>
+
+                <path d="M-10 0 C -2 -14, 10 -12, 18 -4 C 8 6, -2 10, -12 8 Z" fill="#b1004b" opacity=".35"/>
+
+              </g>
+
+            </g>
+
+
+
+            <!-- bandaj la buchet -->
+
+            <path d="M130 210 L170 210 L160 230 L140 230 Z" fill="var(--ribbon)" stroke="#d6aa22" stroke-width="2"/>
+
+
+
+            <defs>
+
+              <radialGradient id="roseGrad" cx="30%" cy="30%">
+
+                <stop offset="0%" stop-color="#ff7aa7"/>
+
+                <stop offset="60%" stop-color="#ff3b7a"/>
+
+                <stop offset="100%" stop-color="#b1004b"/>
+
+              </radialGradient>
+
+            </defs>
+
+          </svg>
+
+        </div>
+
+
+
+        <!-- Scrisoare (plic + foaie) -->
+
+        <svg class="letter" id="letter" viewBox="0 0 320 200" role="button" tabindex="0" aria-label="Deschide scrisoarea">
+
+          <!-- plic -->
+
+          <rect x="10" y="30" width="300" height="150" rx="14" fill="#ffe7d6" stroke="#f0c7a9" stroke-width="3"/>
+
+          <path d="M10 30 L160 120 L310 30" fill="#ffd9c0" />
+
+          <path d="M10 180 L160 90 L310 180" fill="#ffd1b2" />
+
+          <!-- foaie -->
+
+          <rect x="35" y="20" width="250" height="120" rx="10" fill="var(--paper)" stroke="#f3e6d6" stroke-width="2"/>
+
+          <g opacity=".3" stroke="#c7b8a3" stroke-width="2">
+
+            <line x1="50" y1="50" x2="270" y2="50"/>
+
+            <line x1="50" y1="75" x2="270" y2="75"/>
+
+            <line x1="50" y1="100" x2="270" y2="100"/>
+
+          </g>
+
+          <text x="160" y="45" text-anchor="middle" fill="#b56753" font-size="16" font-weight="700">Pentru cea mai dragă mamă</text>
+
+        </svg>
+
+      </div>
+
+    </div>
+
+
+
+    <p class="small">Sfaturi: poți adăuga la ecranul de pornire pe iOS/Android pentru un efect de „aplicație”.</p>
+
+  </div>
+
+
+
+  <!-- Modal mesaj -->
+
+  <dialog class="modal" id="msgModal" aria-label="Mesaj de ziua de naștere">
+
+    <div class="card">
+
+      <h2>La mulți ani, mama! 💖</h2>
+
+
+
+      <!-- === FOTO MAMA (afișată deja) === -->
+
+      <div class="photo-wrap">
+
+        <!-- 🔁 ÎNLOCUIEȘTE LINKUL POZEI AICI (poate fi și data:image/jpeg;base64,...) -->
+
+        <img src="../img/628005735_3768905293405452_4150534907938129975_n.jpg" alt="GreenIT_img" width="300" height="250">
+
+      </div>
+
+      <!-- === /FOTO === -->
+
+
+
+      <!-- === MESAJUL DE FELICITARE === -->
+       <p>
+        Dragă mamă,
+       </p>
+
+      <p>
+
+        Astăzi, când împlinești 41 de ani, vreau să-ți amintesc cât de profund te prețuiesc. Ai fost mereu sprijinul meu necondiționat, brațele care m-au protejat, vocea care m-a îndrumat și inima care nu a încetat niciodată să mă iubească.
+În tot ceea ce fac și în tot ceea ce devin, găsesc câte o parte din tine—din răbdarea ta, din puterea ta, din bunătatea cu care ai știut întotdeauna să transformi greul în lecții și zilele obișnuite în momente speciale. Ești o mamă minunată, un om rar și un suflet de o frumusețe pe care timpul nu o poate atinge.
+Îți doresc ca acest an să-ți aducă liniște, sănătate și bucurii care să-ți încălzească sufletul așa cum tu ai încălzit al nostru, al celor care te iubim. Să ai parte de clipe blânde, de împliniri și de oameni care să-ți fie aproape, așa cum ai meritat mereu.
+La mulți ani, mamă dragă!
+Te iubesc și îți mulțumesc pentru tot ce ești.
+
+      </p>
+
+      <p>
+
+        Cu toată dragostea, copiii tai 🌹
+
+      </p>
+
+      <p><strong>Cu drag,</strong><br/>de la noi.</p>
+
+      <!-- === /MESAJ === -->
+
+
+
+      <button class="close" id="closeBtn" aria-label="Închide mesajul">Închide</button>
+
+    </div>
+
+  </dialog>
+
+
+
+  <script>
+
+    (function(){
+
+      const stage = document.getElementById('stage');
+
+      const petalsLayer = stage.querySelector('.petals-layer');
+
+
+
+      const gift = document.getElementById('gift');
+
+      const bouquet = document.getElementById('bouquet');
+
+      const letter = document.getElementById('letter');
+
+      const confetti = document.querySelector('.confetti');
+
+      const modal = document.getElementById('msgModal');
+
+      const closeBtn = document.getElementById('closeBtn');
+
+
+
+      let opened = false;
+
+
+
+      // ——— Generează petalele care cad (eficient pentru telefon) ———
+
+      (function makePetals(){
+
+        const petalCount = 18;            // Poți mări la 24 dacă vrei mai multe
+
+        const stageW = stage.clientWidth; // pentru distribuție
+
+        for(let i=0;i<petalCount;i++){
+
+          const p = document.createElement('i');
+
+          p.className = 'petal';
+
+          // Variază dimensiuni / opacitate pentru realism
+
+          const base = 12 + Math.random()*10;
+
+          p.style.width = base + 'px';
+
+          p.style.height = (base * 1.25) + 'px';
+
+          p.style.opacity = (0.65 + Math.random()*0.35).toFixed(2);
+
+          // Poziție și traiectorie
+
+          const x = Math.random() * stageW - stageW/2;          // poziție relativă pe axa X
+
+          const drift = (Math.random()*80 - 40) + 'px';         // deviere laterală
+
+          const delay = (Math.random()*3).toFixed(2) + 's';     // întârziere
+
+          const dur = (3.2 + Math.random()*4.2).toFixed(2) + 's'; // durată
+
+          p.style.setProperty('--x', `${x}px`);
+
+          p.style.setProperty('--drift', drift);
+
+          p.style.left = (Math.random()*100) + '%';
+
+          p.style.animationDuration = dur;
+
+          p.style.animationDelay = delay;
+
+          petalsLayer.appendChild(p);
+
+        }
+
+      })();
+
+
+
+      // ——— Deschiderea cadoului ———
+
+      function openGift(){
+
+        if(opened) return;
+
+        opened = true;
+
+        gift.classList.add('opened');
+
+        bouquet.classList.add('sway');
+
+        makeConfetti(80);
+
+        if (navigator.vibrate) navigator.vibrate([20,40,20]); // vibrație scurtă pe mobil
+
+      }
+
+
+
+      function makeConfetti(n){
+
+        const colors = ['#ff3b7a','#ffcf33','#7dd3fc','#86efac','#fca5a5','#c4b5fd'];
+
+        const durMin = 1800, durMax = 3200;
+
+        const frag = document.createDocumentFragment();
+
+        for(let i=0;i<n;i++){
+
+          const p = document.createElement('i');
+
+          const size = 6 + Math.random()*8;
+
+          p.style.width = size+'px';
+
+          p.style.height = (size*1.5)+'px';
+
+          p.style.left = (Math.random()*100)+'%';
+
+          p.style.background = colors[Math.floor(Math.random()*colors.length)];
+
+          p.style.transform = `translateY(${-40 - Math.random()*60}px) rotate(${Math.random()*180}deg)`;
+
+          const duration = durMin + Math.random()*(durMax - durMin);
+
+          p.style.animationDuration = duration+'ms';
+
+          p.style.animationDelay = (Math.random()*300)+'ms';
+
+          p.style.opacity = 0.85 + Math.random()*0.15;
+
+          p.animate(
+
+            [
+
+              { transform: `translate(${(Math.random()*40-20)}px, 0) rotate(0deg)` },
+
+              { transform: `translate(${(Math.random()*80-40)}px, 100vh) rotate(360deg)` }
+
+            ],
+
+            { duration, easing:'linear' }
+
+          );
+
+          frag.appendChild(p);
+
+          setTimeout(()=> p.remove(), duration+400);
+
+        }
+
+        confetti.appendChild(frag);
+
+      }
+
+
+
+      // Control: deschidere cadou
+
+      gift.addEventListener('click', openGift);
+
+      gift.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') { e.preventDefault(); openGift(); } });
+
+
+
+      // ——— Scrisoare -> deschide mesajul ———
+
+      function openModal(){
+
+        if(typeof modal.showModal === 'function'){
+
+          modal.showModal();
+
+        } else {
+
+          modal.setAttribute('open','');
+
+        }
+
+      }
+
+      function closeModal(){
+
+        if(typeof modal.close === 'function'){
+
+          modal.close();
+
+        } else {
+
+          modal.removeAttribute('open');
+
+        }
+
+      }
+
+      letter.addEventListener('click', openModal);
+
+      letter.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') { e.preventDefault(); openModal(); } });
+
+      closeBtn.addEventListener('click', closeModal);
+
+      modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
+
+
+
+      // Prevenim scroll accidental pe dublu-tap iOS în zona scenei
+
+      document.addEventListener('touchmove', function(e){
+
+        if(e.touches.length===1 && e.target.closest('.stage')) {
+
+          e.preventDefault();
+
+        }
+
+      }, {passive:false});
+
+    })();
+
+  </script>
+
+</body>
+
+</html>
